@@ -1,19 +1,41 @@
 import { useEffect, useState } from "react";
-function GetApi() {
-  const [nameChar, setNameChar] = useState("");
+import CharProfile from "./charprofile";
+import Loading from "./loading";
+
+function GetApi({ searchValue, pageValue }) {
+  const [nameChar, setNameChar] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  function geturl(name = "", page = 1) {
+    const scrollY = window.scrollY;
+    setLoading(true);
+    fetch(
+      `https://rickandmortyapi.com/api/character/?page=${page}&name=${name}`,
+    )
+      .then((res) => res.json())
+      .then((data) => setNameChar(data.results || []))
+      .catch(() => setNameChar([]))
+      .finally(() => {
+        setLoading(false);
+        window.scrollTo({ top: scrollY, behavior: "instant" });
+      });
+  }
 
   useEffect(() => {
-    fetch(
-      `https://rickandmortyapi.com/api/character/?count=10?name=${nameChar}`,
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((nameChar) => {
-        console.log(nameChar);
-        setNameChar(nameChar.message);
-      });
-  }, []);
-  return nameChar;
+    if (!searchValue) {
+      return geturl("", pageValue);
+    }
+
+    geturl(searchValue, pageValue);
+  }, [searchValue, pageValue]);
+  return (
+    <>
+      {loading ? (
+        <Loading className={`w-full${"className"}`} />
+      ) : (
+        <CharProfile characters={nameChar} />
+      )}
+    </>
+  );
 }
 export default GetApi;
