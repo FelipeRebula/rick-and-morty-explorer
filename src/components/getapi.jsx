@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import CharProfile from "./charprofile";
+
 import Loading from "./loading";
 
-function GetApi({ searchValue, pageValue }) {
-  const [nameChar, setNameChar] = useState([]);
-  const [loading, setLoading] = useState(false);
-
+function GetApi({
+  searchValue,
+  pageValue,
+  setNameChar,
+  nameChar,
+  setLoading,
+  loading,
+}) {
   function geturl(name = "", page = 1) {
     const scrollY = window.scrollY;
     setLoading(true);
@@ -13,11 +17,12 @@ function GetApi({ searchValue, pageValue }) {
       `https://rickandmortyapi.com/api/character/?page=${page}&name=${name}`,
     )
       .then((res) => res.json())
-      .then((data) => setNameChar(data.results || []))
+      .then((data) => setNameChar(data || []))
+
       .catch(() => setNameChar([]))
       .finally(() => {
         setLoading(false);
-        window.scrollTo({ top: scrollY, behavior: "instant" });
+        window.scrollTo({ top: scrollY, behavior: "auto" });
       });
   }
 
@@ -31,9 +36,9 @@ function GetApi({ searchValue, pageValue }) {
   return (
     <>
       {loading ? (
-        <Loading className={`w-full${"className"}`} />
+        <Loading className={`w-full items-center`} />
       ) : (
-        <CharProfile characters={nameChar} />
+        (nameChar, loading)
       )}
     </>
   );

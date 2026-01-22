@@ -1,12 +1,12 @@
 function CharProfile(props) {
-  const chars = props.characters || [];
+  const chars = props.characters.results || [];
 
   return chars.map((char) => (
     <a
       href="#"
       key={char.id}
       id={char.id}
-      className="bg-blue-950 items-center h-110 w-80 rounded-md"
+      className="bg-blue-950 items-center h-min-full w-80 rounded-md"
     >
       <div>
         <div className="flex justify-center-safe items-center mt-3">

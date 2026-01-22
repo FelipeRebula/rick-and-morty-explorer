@@ -1,5 +1,5 @@
 import { useState } from "react";
-function Search({ className, onChange }) {
+function Search({ className, onChange, setPageValue }) {
   const [search, setSearch] = useState([]);
   const seasons = {
     Season_1: 11,
@@ -12,6 +12,7 @@ function Search({ className, onChange }) {
   const handleChange = (e) => {
     const value = e.target.value;
     setSearch(value);
+    setPageValue(1);
     if (onChange) onChange(value);
   };
   const searchBar = (
