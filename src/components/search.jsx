@@ -36,12 +36,6 @@ function Search({ className, onChange, setPageValue }) {
       </select>
     ),
     (<select name="Episode" id=""></select>));
-  return (
-    <div>
-      {searchBar}
-      {locatesel}
-      {epsel}
-    </div>
-  );
+  return searchBar;
 }
 export default Search;

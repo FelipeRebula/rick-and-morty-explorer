@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import Loading from "./loading";
 
 function GetApi({
-  searchValue,
-  pageValue,
-  setNameChar,
-  nameChar,
-  setLoading,
-  loading,
+  searchValue = "",
+  pageValue = 1,
+  setNameChar = "",
+  nameChar = [],
+  setLoading = true,
+  loading = true,
 }) {
-  function geturl(name = "", page = 1) {
+  function geturl(name, page) {
     const scrollY = window.scrollY;
     setLoading(true);
     fetch(
@@ -35,7 +35,7 @@ function GetApi({
   }, [searchValue, pageValue]);
   return (
     <>
-      {loading ? (
+      {!loading ? (
         <Loading className={`w-full items-center`} />
       ) : (
         (nameChar, loading)

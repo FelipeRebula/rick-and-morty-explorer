@@ -10,13 +10,15 @@ import Search from "./components/search";
 import GetApi from "./components/getapi";
 import Footer from "./components/footer";
 import CharProfile from "./components/charprofile";
+
 function App() {
   const [searchValue, setSearchValue] = useState("");
   const [pageValue, setPageValue] = useState(1);
   const [nameChar, setNameChar] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   return (
     <div>
+      {console.log(loading)}
       <header className="bg-gray-400 h-20 content-center text-center">
         <Search
           onChange={setSearchValue}
@@ -34,7 +36,6 @@ function App() {
 
         {!loading && <CharProfile characters={nameChar} />}
       </div>
-
       <Footer
         info={nameChar.info}
         setPageValue={setPageValue}
