@@ -15,10 +15,9 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
   const [pageValue, setPageValue] = useState(1);
   const [nameChar, setNameChar] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   return (
     <div>
-      {console.log(loading)}
       <header className="bg-gray-400 h-20 content-center text-center">
         <Search
           onChange={setSearchValue}

@@ -1,20 +1,20 @@
 import { useEffect } from "react";
 
-import Loading from "./loading";
-
 function GetApi({
   searchValue = "",
   pageValue = 1,
   setNameChar = "",
   nameChar = [],
-  setLoading = true,
-  loading = true,
+  setLoading = false,
+  loading = false,
+  id = "",
 }) {
-  function geturl(name, page) {
-    const scrollY = window.scrollY;
+  function geturl(name = "rick", page) {
     setLoading(true);
+    const scrollY = window.scrollY;
+
     fetch(
-      `https://rickandmortyapi.com/api/character/?page=${page}&name=${name}`,
+      `https://rickandmortyapi.com/api/character/${id}?page=${page}&name=${name}`,
     )
       .then((res) => res.json())
       .then((data) => setNameChar(data || []))
@@ -33,14 +33,6 @@ function GetApi({
 
     geturl(searchValue, pageValue);
   }, [searchValue, pageValue]);
-  return (
-    <>
-      {!loading ? (
-        <Loading className={`w-full items-center`} />
-      ) : (
-        (nameChar, loading)
-      )}
-    </>
-  );
+  return <>{loading ? loading : (nameChar, loading)}</>;
 }
 export default GetApi;

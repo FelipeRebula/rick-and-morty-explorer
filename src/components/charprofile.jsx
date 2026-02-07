@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 function CharProfile(props) {
   const chars = props.characters.results || [];
-
   return chars.map((char) => (
-    <a
-      href="#"
+    <Link
+      to={`/character?id=${char.id}`}
+      state={char.id}
       key={char.id}
       id={char.id}
       className="bg-blue-950 items-center h-min-full w-80 rounded-md"
@@ -20,7 +22,7 @@ function CharProfile(props) {
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   ));
 }
 
