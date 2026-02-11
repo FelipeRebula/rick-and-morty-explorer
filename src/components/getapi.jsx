@@ -2,19 +2,20 @@ import { useEffect } from "react";
 
 function GetApi({
   searchValue = "",
-  pageValue = 1,
+  pageValue = "",
   setNameChar = "",
   nameChar = [],
   setLoading = false,
   loading = false,
   id = "",
+  getparam = "character",
 }) {
-  function geturl(name = "rick", page) {
+  function geturl(name = "rick", page, param = "character") {
     setLoading(true);
     const scrollY = window.scrollY;
 
     fetch(
-      `https://rickandmortyapi.com/api/character/${id}?page=${page}&name=${name}`,
+      `https://rickandmortyapi.com/api/${param}/${id}?page=${page}&name=${name}`,
     )
       .then((res) => res.json())
       .then((data) => setNameChar(data || []))
@@ -31,8 +32,8 @@ function GetApi({
       return geturl("", pageValue);
     }
 
-    geturl(searchValue, pageValue);
-  }, [searchValue, pageValue]);
+    geturl(searchValue, pageValue, getparam);
+  }, [searchValue, pageValue, getparam]);
   return <>{loading ? loading : (nameChar, loading)}</>;
 }
 export default GetApi;

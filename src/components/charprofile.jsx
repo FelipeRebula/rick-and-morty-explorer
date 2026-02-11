@@ -8,7 +8,7 @@ function CharProfile(props) {
       state={char.id}
       key={char.id}
       id={char.id}
-      className="bg-blue-950 items-center h-min-full w-80 rounded-md"
+      className="bg-blue-950 items-center h-min-full rounded-md w-80"
     >
       <div>
         <div className="flex justify-center-safe items-center mt-3">

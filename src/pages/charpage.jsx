@@ -4,12 +4,12 @@ import GetApi from "../components/getapi";
 import Eps from "../components/eps";
 import CharInfos from "../components/charinfos";
 import ImageChar from "../components/imgaechar";
-
+import Header from "../components/header";
 function Charpage() {
   const [loading, setLoading] = useState(true);
   const [nameChar, setNameChar] = useState([]);
   const [searchParams] = useSearchParams();
-
+  const button = "Back to Main Menu";
   return (
     <div>
       <GetApi
@@ -20,11 +20,8 @@ function Charpage() {
         loading={loading}
       />
 
-      <header className="bg-gray-400 h-20 content-center text-center">
-        <div className="flex justify-self-start">
-          <a href="../">Back to Menu</a>
-        </div>
-      </header>
+      <Header button={button} />
+
       <div>
         <div>
           <ImageChar nameChar={nameChar} />

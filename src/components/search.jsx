@@ -17,7 +17,7 @@ function Search({ className, onChange, setPageValue }) {
   };
   const searchBar = (
     <input
-      className={` w-150 h-10 text-white shadow-2xl text-2xl rounded-md ${className}`}
+      className={` w-80 md:w-150 h-10 text-2xl rounded-md ${className}`}
       type="text"
       placeholder="  Search characters"
       value={search}

@@ -6,11 +6,11 @@ import { useState } from "react";
   */
 }
 import "./App.css";
-import Search from "./components/search";
+
 import GetApi from "./components/getapi";
 import Footer from "./components/footer";
 import CharProfile from "./components/charprofile";
-
+import Header from "./components/header";
 function App() {
   const [searchValue, setSearchValue] = useState("");
   const [pageValue, setPageValue] = useState(1);
@@ -18,14 +18,8 @@ function App() {
   const [loading, setLoading] = useState(true);
   return (
     <div>
-      <header className="bg-gray-400 h-20 content-center text-center">
-        <Search
-          onChange={setSearchValue}
-          setPageValue={setPageValue}
-          className="bg-gray-700"
-        />
-      </header>
-      <div className="min-h-screen ml-13 mb-10 mt-2 grid grid-cols-4 grid-rows-4 gap-3">
+      <Header setSearchValue={setSearchValue} setPageValue={setPageValue} />
+      <div className="min-h-screen ml-7 mb-10 mt-2 grid grid-cols-1 grid-rows-1 gap-3 md:grid-cols-4 md:grid-rows-4 md:ml-13">
         <GetApi
           searchValue={searchValue}
           pageValue={pageValue}

@@ -16,9 +16,9 @@ function Footer({ pageValue, setPageValue, info }) {
   }, [inputPage]);
 
   return (
-    <footer className=" flex items-center justify-center bg-gray-600 h-20">
+    <footer className=" flex items-center justify-center bg-blue-950 text-white h-20">
       <button
-        className="mr-4 text-3xl rounded-3xl bg-gray-300 w-40"
+        className="mr-4 text-3xl rounded-3xl bg-blue-800 w-25 md:w-40"
         onClick={() => (
           setPageValue((prev) => Math.max(prev - 1, 1)),
           setInputPage((prev) => prev - 1)
@@ -28,14 +28,14 @@ function Footer({ pageValue, setPageValue, info }) {
       </button>
       <input
         type="text"
-        className=" rounded-md text-4xl w-11 bg-gray-700 items-center justify-center "
+        className=" rounded-md text-4xl w-11 bg-blue-800 items-center justify-center text-white"
         value={inputPage}
         onChange={(e) => setInputPage(Number(e.target.value))}
       />
-
-      <h1 className=" text-4xl ">/{Number(pages)}</h1>
+      <h1 className="text-4xl">/</h1>
+      <h1 className=" text-4xl text-white">{Number(pages)}</h1>
       <button
-        className="ml-4 text-3xl rounded-3xl bg-gray-300 w-40"
+        className="ml-4 text-3xl rounded-3xl bg-blue-800 text-white w-25 md:w-40"
         onClick={() => (
           setPageValue((prev) => prev + 1),
           setInputPage((prev) => prev + 1)

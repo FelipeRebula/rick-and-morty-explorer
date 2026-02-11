@@ -1,23 +1,25 @@
 import ObjetcttoArray from "../../utils/ObjecttoArray";
+import { Link } from "react-router-dom";
 function CharInfos(nameChar) {
   const Character = nameChar.nameChar;
-
   const Location = ObjetcttoArray(
     ObjetcttoArray(Character, "location"),
     "name",
   );
 
   return (
-    <div className="bg-sky-300 w-3xs">
+    <div className="bg-blue-950 w-3xs text-white">
       <b>Gender:</b>
       {ObjetcttoArray(Character, "gender")}
       <br />
       <b>Specie:</b>
-      {console.log(ObjetcttoArray(Character))}
       {ObjetcttoArray(Character, "species")}
       <br />
-      <b>origin:</b>
-      <a href={ObjetcttoArray(Character, "location")}>{Location}</a>
+      <b>Origin:</b>
+
+      <Link state={Location} to={`/locate/?name=${Location}`}>
+        {Location}
+      </Link>
     </div>
   );
 }
